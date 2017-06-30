@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
@@ -82,6 +83,9 @@ module.exports = {
       disable: false,
       allChunks: true,
       filename: '[name].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: 'template/index.html'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
