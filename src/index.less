@@ -20,6 +20,7 @@ img {
   overflow: hidden;
 }
 .page {
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -29,6 +30,9 @@ img {
   animation-duration: 0.5s;
   animation-fill-mode: both;
 
+  &.loaded {
+    display: block;
+  }
   &.active {
     transform: translate3d(0, 0, 0);
   }
