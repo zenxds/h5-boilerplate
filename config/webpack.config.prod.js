@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlOnePlugin = require('webpack-html-one')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
@@ -105,6 +106,7 @@ module.exports = {
         screw_ie8: false
       }
     }),
-    new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`)
+    new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`),
+    new HtmlOnePlugin()
   ]
 }
