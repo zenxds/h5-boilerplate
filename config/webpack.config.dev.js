@@ -63,7 +63,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'template/index.html'
+      template: 'template/index.html',
+      hash: true
     }),
     new DashboardPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

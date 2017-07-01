@@ -85,7 +85,8 @@ module.exports = {
       filename: '[name].css'
     }),
     new HtmlWebpackPlugin({
-      template: 'template/index.html'
+      template: 'template/index.html',
+      hash: true
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
