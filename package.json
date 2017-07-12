@@ -6,6 +6,7 @@
   "scripts": {
     "start": "BABEL_ENV=dev webpack-dashboard -- webpack-dev-server -w --open --env=dev",
     "build": "BABEL_ENV=prod webpack --env=prod",
+    "deploy": "npm run build && scp ./build/* ubuntu@domain:/home/ubuntu/",
     "test": "ava"
   },
   "author": "zenxds",
