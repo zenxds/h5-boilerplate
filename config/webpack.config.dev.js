@@ -7,7 +7,6 @@ const rules = require('./webpack.rules')
 module.exports = {
   entry: './src/index.js',
   output: {
-    // publicPath: '/',
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
@@ -74,7 +73,7 @@ module.exports = {
     })
   ],
   devServer: {
-    publicPath: '/',
+    contentBase: [path.join(__dirname, '../build'), path.join(__dirname, '..')],
     hot: true,
     host: '0.0.0.0',
     disableHostCheck: true
