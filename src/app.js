@@ -97,5 +97,5 @@ function getAnimationendEvent() {
  * 首字母大写
  */
 function ucfirst(str) {
-  return str.charAt(0).toUpperCase() + str.substring(1);
+  return str.charAt(0).toUpperCase() + str.substring(1)
 }
