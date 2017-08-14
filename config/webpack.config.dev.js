@@ -10,7 +10,7 @@ module.exports = {
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: rules.concat([
       {
