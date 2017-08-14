@@ -9,7 +9,7 @@
     "deploy": "npm run build && scp ./build/* ubuntu@domain:/home/ubuntu/",
     "test": "ava"
   },
-  "author": "zenxds",
+  "author": "",
   "publishConfig": {},
   "repository": {
     "type": "git",
