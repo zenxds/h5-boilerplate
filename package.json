@@ -5,7 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "start": "BABEL_ENV=dev webpack-dashboard -p 9841 -- webpack-dev-server -w --open --env=dev",
-    "build": "BABEL_ENV=prod webpack --env=prod",
+    "build": "BABEL_ENV=production webpack --env=production",
     "deploy": "npm run build && scp ./build/* ubuntu@domain:/home/ubuntu/",
     "test": "ava"
   },
