@@ -107,6 +107,8 @@ module.exports = {
       }
     }),
     new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`),
-    new HtmlOnePlugin()
+    new HtmlOnePlugin({
+      decodeEntities: false
+    })
   ]
 }
