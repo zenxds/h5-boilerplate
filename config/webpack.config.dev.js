@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const rules = require('./webpack.rules')
 module.exports = {
@@ -65,7 +64,6 @@ module.exports = {
       template: 'template/index.html',
       hash: true
     }),
-    new DashboardPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
@@ -73,11 +71,14 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: [path.join(__dirname, '../build'), path.join(__dirname, '..')],
+    contentBase: [
+      path.join(__dirname, '../build'),
+      path.join(__dirname, '..')
+    ],
     hot: true,
     host: '0.0.0.0',
     disableHostCheck: true,
-    setup(app){
+    before(app){
       app.all('/api/*', function(req, res) {
         const p = path.join(__dirname, '..', /\.json$/.test(req.path) ? req.path : req.path + '.json')
         res.json(require(p))
