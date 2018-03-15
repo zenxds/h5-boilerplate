@@ -1819,10 +1819,6 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-ctu-mlib@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/ctu-mlib/-/ctu-mlib-0.2.1.tgz#a4df26ac72e3fe2a951808146202a9c3507d7023"
-
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -2169,6 +2165,10 @@ duplexify@^3.2.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+dx-mlib@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/dx-mlib/-/dx-mlib-0.2.1.tgz#3a5c6b367b369d2a295990a96e26f48d138d0c6e"
 
 each-async@^1.0.0, each-async@^1.1.1:
   version "1.1.1"

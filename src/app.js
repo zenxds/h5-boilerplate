@@ -1,6 +1,6 @@
-import $ from 'ctu-mlib/zepto/zepto'
-import 'ctu-mlib/zepto/event'
-import 'ctu-mlib/zepto/touch'
+import $ from 'dx-mlib/zepto/zepto'
+import 'dx-mlib/zepto/event'
+import 'dx-mlib/zepto/touch'
 
 const animationendEvent = getAnimationendEvent()
 const defaultOptions = {
@@ -20,7 +20,7 @@ export default class APP {
 
   initProps() {
     this.$pages = $(this.options.page)
-    this.length = this.$pages.length    
+    this.length = this.$pages.length
     this.activeIndex = this.options.activeIndex
   }
 
@@ -62,15 +62,15 @@ export default class APP {
     const $out = this.$pages.eq(activeIndex)
     const $in = this.$pages.eq(nextIndex)
 
-    this.isAnimating = true     
+    this.isAnimating = true
 
     $in.one(animationendEvent, (e) => {
       $in.toggleClass(`slideIn${action} active`)
       this.activeIndex = nextIndex
-      this.isAnimating = false      
+      this.isAnimating = false
       this.preload()
     }).addClass(`slideIn${action}`)
-    
+
     $out.one(animationendEvent, (e) => {
       $out.removeClass(`slideOut${action} active`)
     }).addClass(`slideOut${action}`)
@@ -90,7 +90,7 @@ function getAnimationendEvent() {
     if (el.style[i] !== undefined) {
       return animations[i]
     }
-  }  
+  }
 }
 
 /**

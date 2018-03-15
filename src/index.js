@@ -1,9 +1,9 @@
 /**
  * 入口
  */
-import 'ctu-mlib/flexible'
-import $ from 'ctu-mlib/zepto/zepto'
-import wx from 'ctu-mlib/src/wx'
+import 'dx-mlib/flexible'
+import $ from 'dx-mlib/zepto/zepto'
+import wx from 'dx-mlib/src/wx'
 import FastClick from 'fastclick'
 
 import 'normalize.css/normalize.css'

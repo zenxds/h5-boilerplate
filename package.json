@@ -42,7 +42,7 @@
     "webpack-html-one": "^0.3.2"
   },
   "dependencies": {
-    "ctu-mlib": "^0.2.1",
+    "dx-mlib": "^0.2.1",
     "fastclick": "^1.0.6",
     "normalize.css": "^7.0.0"
   }
