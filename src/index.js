@@ -21,7 +21,7 @@ $(() => {
   new APP()
 
   // 微信分享
-  if (process.env.NODE_ENV === 'prod') {
+  if (process.env.NODE_ENV === 'production') {
     wx.share({
       // title: '',
       desc: '',
