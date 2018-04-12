@@ -9,6 +9,7 @@ const moment = require('moment')
 
 const rules = require('./webpack.rules')
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
@@ -18,7 +19,7 @@ module.exports = {
     rules: rules.concat([
       {
         test: /\.jsx?$/,
-        loader: ['babel-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
@@ -57,12 +58,7 @@ module.exports = {
               }
             }
           },
-          {
-            loader: 'less-loader',
-            options: {
-              relativeUrls: false
-            }
-          }
+          'less-loader'
         ])
       },
       {
@@ -76,9 +72,7 @@ module.exports = {
   },
   plugins: [
     new WebpackCleanupPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
+    new webpack.DefinePlugin({}),
     new ExtractTextPlugin({
       disable: false,
       allChunks: true,
@@ -87,23 +81,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template/index.prod.html',
       hash: true
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        ascii_only: true,
-        quote_keys: true,
-        screw_ie8: false
-      },
-      compress: {
-        warnings: false,
-        drop_console: true,
-        properties: false,
-        screw_ie8: false
-      },
-      mangle: {
-        screw_ie8: false
-      }
     }),
     new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`),
     new HtmlOnePlugin({

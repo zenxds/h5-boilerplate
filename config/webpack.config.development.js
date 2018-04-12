@@ -1,9 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const dxMock = require('dx-mock')
 
 const rules = require('./webpack.rules')
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
@@ -14,7 +16,7 @@ module.exports = {
     rules: rules.concat([
       {
         test: /\.jsx?$/,
-        loader: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
@@ -45,12 +47,7 @@ module.exports = {
               }
             }
           },
-          {
-            loader: 'less-loader',
-            options: {
-              relativeUrls: false
-            }
-          }
+          'less-loader'
         ]
       },
       {
@@ -64,11 +61,8 @@ module.exports = {
       template: 'template/index.html',
       hash: true
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('dev')
-    })
+    new webpack.DefinePlugin({})
   ],
   devServer: {
     contentBase: [
@@ -78,11 +72,8 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     disableHostCheck: true,
-    before(app){
-      app.all('/api/*', function(req, res) {
-        const p = path.join(__dirname, '..', /\.json$/.test(req.path) ? req.path : req.path + '.json')
-        res.json(require(p))
-      })
+    before(app) {
+      dxMock(app, { root: path.join(__dirname, '../api')})
     }
   }
 }

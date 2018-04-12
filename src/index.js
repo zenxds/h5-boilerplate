@@ -13,9 +13,10 @@ import APP from './app'
 $(() => {
   FastClick.attach(document.body)
 
-  // 阻止默认滚动
-  $(document).on('touchmove', function(e){
-    e.preventDefault()
+  $(document).on('touchmove', function(event){
+    if (event.cancelable) {
+      event.preventDefault()
+    }
   })
 
   new APP()

@@ -1,6 +1,6 @@
 import $ from 'dx-mlib/zepto/zepto'
 import 'dx-mlib/zepto/event'
-import 'dx-mlib/zepto/touch'
+import Swipe from 'dx-mlib/src/Swipe'
 
 const animationendEvent = getAnimationendEvent()
 const defaultOptions = {
@@ -25,13 +25,14 @@ export default class APP {
   }
 
   bindEvents() {
-    this.$pages.swipeUp(() => {
+    this.swipe = new Swipe(this.$pages.parent()[0])
+    this.swipe.events.on('swipeUp', () => {
       if (this.activeIndex === this.length - 1 || this.isAnimating) {
         return
       }
 
       this.move('up')
-    }).swipeDown(() => {
+    }).on('swipeDown', () => {
       if (this.activeIndex === 0 || this.isAnimating) {
         return
       }
