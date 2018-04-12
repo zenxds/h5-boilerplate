@@ -25,7 +25,10 @@ export default class APP {
   }
 
   bindEvents() {
-    this.swipe = new Swipe(this.$pages.parent()[0])
+    this.swipe = new Swipe(this.$pages.parent()[0], {
+      threshold: 30
+    })
+
     this.swipe.events.on('swipeUp', () => {
       if (this.activeIndex === this.length - 1 || this.isAnimating) {
         return
