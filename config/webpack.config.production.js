@@ -1,7 +1,7 @@
 // https://www.maizhiying.me/posts/2017/03/01/webpack-babel-ie8-support.html
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlOnePlugin = require('webpack-html-one')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
@@ -24,7 +24,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -39,11 +40,12 @@ module.exports = {
               }
             }
           }
-        ])
+        ]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -59,7 +61,7 @@ module.exports = {
             }
           },
           'less-loader'
-        ])
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -73,10 +75,8 @@ module.exports = {
   plugins: [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({}),
-    new ExtractTextPlugin({
-      disable: false,
-      allChunks: true,
-      filename: '[name].css'
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
     }),
     new HtmlWebpackPlugin({
       template: 'template/index.prod.html',
