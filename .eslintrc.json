@@ -2,7 +2,10 @@
   "extends": "eslint:recommended",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 6
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
   },
   "env": {
     "browser": true,
@@ -15,11 +18,8 @@
   "rules": {
     "no-unused-vars": 0,
     "no-console": 0,
-    // 行尾必须加分号
     "semi": 0,
-    // 文件末尾必须留空行
     "eol-last": 0,
-    // IE8在数组或对象的末尾元素后加逗号会抛出错误
     "comma-dangle": 0
   }
 }
