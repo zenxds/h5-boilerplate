@@ -6,6 +6,7 @@
   "scripts": {
     "start": "BABEL_ENV=development webpack-dev-server -w --open --env=development",
     "build": "BABEL_ENV=production webpack --env=production",
+    "prettier": "prettier src/**/*.js --write",
     "deploy": "npm run build && scp ./build/* ubuntu@domain:/home/ubuntu/"
   },
   "author": "",
@@ -34,6 +35,7 @@
     "moment": "^2.22.0",
     "postcss-loader": "^3.0.0",
     "postcss-px2rem": "^0.3.0",
+    "prettier": "^1.15.3",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.17.2",

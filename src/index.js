@@ -13,11 +13,15 @@ import APP from './app'
 $(() => {
   FastClick.attach(document.body)
 
-  document.body.addEventListener('touchmove', event => {
-    event.preventDefault()
-  }, {
-    passive: false
-  })
+  document.body.addEventListener(
+    'touchmove',
+    event => {
+      event.preventDefault()
+    },
+    {
+      passive: false
+    }
+  )
 
   new APP()
 

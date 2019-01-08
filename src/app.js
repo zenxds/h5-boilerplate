@@ -25,19 +25,21 @@ export default class APP {
   }
 
   bindEvents() {
-    this.$pages.on('swipeUp', () => {
-      if (this.activeIndex === this.length - 1 || this.isAnimating) {
-        return
-      }
+    this.$pages
+      .on('swipeUp', () => {
+        if (this.activeIndex === this.length - 1 || this.isAnimating) {
+          return
+        }
 
-      this.move('up')
-    }).on('swipeDown', () => {
-      if (this.activeIndex === 0 || this.isAnimating) {
-        return
-      }
+        this.move('up')
+      })
+      .on('swipeDown', () => {
+        if (this.activeIndex === 0 || this.isAnimating) {
+          return
+        }
 
-      this.move('down')
-    })
+        this.move('down')
+      })
   }
 
   /**
@@ -64,26 +66,30 @@ export default class APP {
 
     this.isAnimating = true
 
-    $in.one(animationendEvent, (e) => {
-      $in.toggleClass(`slideIn${action} active`)
-      this.activeIndex = nextIndex
-      this.isAnimating = false
-      this.preload()
-    }).addClass(`slideIn${action}`)
+    $in
+      .one(animationendEvent, e => {
+        $in.toggleClass(`slideIn${action} active`)
+        this.activeIndex = nextIndex
+        this.isAnimating = false
+        this.preload()
+      })
+      .addClass(`slideIn${action}`)
 
-    $out.one(animationendEvent, (e) => {
-      $out.removeClass(`slideOut${action} active`)
-    }).addClass(`slideOut${action}`)
+    $out
+      .one(animationendEvent, e => {
+        $out.removeClass(`slideOut${action} active`)
+      })
+      .addClass(`slideOut${action}`)
   }
 }
 
 function getAnimationendEvent() {
-  const el = document.createElement("fakeelement")
+  const el = document.createElement('fakeelement')
   const animations = {
-    "animation"      : "animationend",
-    "OAnimation"     : "oAnimationEnd",
-    "MozAnimation"   : "animationend",
-    "WebkitAnimation": "webkitAnimationEnd"
+    animation: 'animationend',
+    OAnimation: 'oAnimationEnd',
+    MozAnimation: 'animationend',
+    WebkitAnimation: 'webkitAnimationEnd'
   }
 
   for (let i in animations) {
