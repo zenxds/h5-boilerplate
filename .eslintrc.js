@@ -16,10 +16,11 @@ module.exports = {
     "import"
   ],
   "rules": {
-    "no-unused-vars": 0,
-    "no-console": 0,
-    "semi": 0,
-    "eol-last": 0,
-    "comma-dangle": 0
+    "no-unused-vars": ["warn"],
+    "no-console": ["error", {"allow": ["log", "warn", "error"]}],
+    "no-empty": ["error", {"allowEmptyCatch": true}],
+    "semi": ["error", "never"],
+    "eol-last": ["warn"],
+    "comma-dangle": ["error", "never"]
   }
 }
