@@ -16,11 +16,47 @@ module.exports = {
     "import"
   ],
   "rules": {
-    "no-unused-vars": ["warn"],
-    "no-console": ["error", {"allow": ["log", "warn", "error"]}],
-    "no-empty": ["error", {"allowEmptyCatch": true}],
-    "semi": ["error", "never"],
-    "eol-last": ["warn"],
-    "comma-dangle": ["error", "never"]
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "log",
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-empty": [
+      "error",
+      {
+        "allowEmptyCatch": true
+      }
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "eol-last": [
+      "warn"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ]
   }
 }
