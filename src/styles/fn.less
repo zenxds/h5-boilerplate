@@ -1,0 +1,30 @@
+@base-font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+
+.fn-image-set(@url) {
+  @url2: replace(@url, "\.(jpe?g|png)$", "@2.$1");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(@url);
+  background-image: image-set(url(@url) 1x, url(@url2) 2x);
+}
+
+.fn-square(@size) {
+  width: @size;
+  height: @size;
+}
+
+.fn-center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*
+ * 单行文字溢出时出现省略号，需设定宽度
+ */
+ .fn-text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

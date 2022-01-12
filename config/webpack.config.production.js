@@ -1,20 +1,39 @@
 // https://www.maizhiying.me/posts/2017/03/01/webpack-babel-ie8-support.html
 const path = require('path')
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlOnePlugin = require('webpack-html-one')
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
-const moment = require('moment')
+const dayjs = require('dayjs')
 
 const rules = require('./webpack.rules')
 module.exports = {
   mode: 'production',
+  target: 'web',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
-    filename: 'main.js'
+    filename: 'main.js',
+    clean: {}
+  },
+  optimization: {
+    // chunkIds: 'named',
+    minimize: true,
+    minimizer: [
+      new webpack.BannerPlugin(`${dayjs().format('YYYY-MM-DD HH:mm:ss')}`),
+      new TerserPlugin({
+        parallel: true,
+        extractComments: false,
+        terserOptions: {
+          compress: {
+            drop_console: true
+          }
+        }
+      }),
+      new CssMinimizerPlugin()
+    ]
   },
   module: {
     rules: rules.concat([
@@ -27,17 +46,12 @@ module.exports = {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              config: {
-                path: 'config/postcss.config.js'
+              postcssOptions: {
+                config: path.join(__dirname, 'postcss.config.js')
               }
             }
           }
@@ -47,62 +61,31 @@ module.exports = {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              config: {
-                path: 'config/postcss.config.js'
+              postcssOptions: {
+                config: path.join(__dirname, 'postcss.config.js')
               }
             }
           },
           'less-loader'
         ]
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        use: [
-          'url-loader?limit=8192&name=image/[hash].[ext]'
-        ]
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'image-webpack-loader',
-        options: {
-          mozjpeg: {
-            quality: 80
-          },
-          // optipng.enabled: false will disable optipng
-          optipng: {
-            enabled: false
-          },
-          pngquant: {
-            quality: '65-90',
-            speed: 4
-          }
-        },
-        // This will apply the loader before the other ones
-        enforce: 'pre'
       }
     ])
   },
   plugins: [
-    new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({}),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      chunkFilename: '[name].[hash].css',
+      filename: '[name].css'
     }),
-    new OptimizeCSSAssetsPlugin({}),
     new HtmlWebpackPlugin({
       template: 'template/index.prod.html',
+      inject: 'body',
       hash: true
     }),
-    new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`),
     new HtmlOnePlugin({
       decodeEntities: false
     })

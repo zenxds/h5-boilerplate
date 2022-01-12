@@ -1,9 +1,16 @@
-/**
- * 公用规则
- */
 module.exports = [
   {
     test: /\.(woff|woff2|eot|ttf|otf)$/,
-    use: 'url-loader?limit=10000&name=font/[hash].[ext]'
+    type: 'asset',
+    generator: {
+      filename: 'assets/fonts/[hash][ext]'
+    }
+  },
+  {
+    test: /\.(png|jpe?g|gif|svg)$/,
+    type: 'asset',
+    generator: {
+      filename: 'assets/images/[hash][ext]'
+    }
   }
 ]
