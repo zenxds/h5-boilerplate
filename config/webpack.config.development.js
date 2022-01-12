@@ -86,6 +86,12 @@ module.exports = {
       }
 
       dxMock(devServer.app, { root: path.join(__dirname, '../api') })
+    },
+    proxy: {
+      '/dev': {
+        target: '',
+        pathRewrite: { '^/dev': '' },
+      },
     }
   }
 }
