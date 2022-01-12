@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'main.js',
-    clean: {}
+    clean: {},
   },
   optimization: {
     // chunkIds: 'named',
@@ -28,19 +28,19 @@ module.exports = {
         extractComments: false,
         terserOptions: {
           compress: {
-            drop_console: true
-          }
-        }
+            drop_console: true,
+          },
+        },
       }),
-      new CssMinimizerPlugin()
-    ]
+      new CssMinimizerPlugin(),
+    ],
   },
   module: {
     rules: rules.concat([
       {
         test: /\.jsx?$/,
         use: ['babel-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -51,11 +51,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                config: path.join(__dirname, 'postcss.config.js')
-              }
-            }
-          }
-        ]
+                config: path.join(__dirname, 'postcss.config.js'),
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
@@ -66,28 +66,28 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                config: path.join(__dirname, 'postcss.config.js')
-              }
-            }
+                config: path.join(__dirname, 'postcss.config.js'),
+              },
+            },
           },
-          'less-loader'
-        ]
-      }
-    ])
+          'less-loader',
+        ],
+      },
+    ]),
   },
   plugins: [
     new webpack.DefinePlugin({}),
     new MiniCssExtractPlugin({
       chunkFilename: '[name].[hash].css',
-      filename: '[name].css'
+      filename: '[name].css',
     }),
     new HtmlWebpackPlugin({
       template: 'template/index.prod.html',
       inject: 'body',
-      hash: true
+      hash: true,
     }),
     new HtmlOnePlugin({
-      decodeEntities: false
-    })
-  ]
+      decodeEntities: false,
+    }),
+  ],
 }

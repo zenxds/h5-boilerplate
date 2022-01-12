@@ -15,8 +15,8 @@ $(() => {
       event.preventDefault()
     },
     {
-      passive: false
-    }
+      passive: false,
+    },
   )
 
   // 微信分享
@@ -24,7 +24,7 @@ $(() => {
     wx.share({
       // title: '',
       desc: '',
-      imgUrl: ''
+      imgUrl: '',
     })
   }
 })

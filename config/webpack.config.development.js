@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
-    filename: 'main.js'
+    filename: 'main.js',
   },
   devtool: 'inline-source-map',
   module: {
@@ -18,7 +18,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -29,11 +29,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                config: path.join(__dirname, 'postcss.config.js')
-              }
-            }
-          }
-        ]
+                config: path.join(__dirname, 'postcss.config.js'),
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
@@ -44,38 +44,38 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                config: path.join(__dirname, 'postcss.config.js')
-              }
-            }
+                config: path.join(__dirname, 'postcss.config.js'),
+              },
+            },
           },
-          'less-loader'
-        ]
-      }
-    ])
+          'less-loader',
+        ],
+      },
+    ]),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'template/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
     }),
     new ESLintPlugin(),
-    new webpack.DefinePlugin({})
+    new webpack.DefinePlugin({}),
   ],
   devServer: {
     static: [
       {
-        directory: path.join(__dirname, '..')
+        directory: path.join(__dirname, '..'),
       },
       {
-        directory: path.join(__dirname, '../build')
-      }
+        directory: path.join(__dirname, '../build'),
+      },
     ],
     client: {
       overlay: {
         errors: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     },
     hot: true,
     host: '0.0.0.0',
@@ -92,6 +92,6 @@ module.exports = {
         target: '',
         pathRewrite: { '^/dev': '' },
       },
-    }
-  }
+    },
+  },
 }

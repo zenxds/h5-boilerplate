@@ -6,8 +6,8 @@ module.exports = {
     // px2rem(),
     pxToViewport({
       viewportWidth: 750,
-      selectorBlackList: []
+      selectorBlackList: [],
     }),
-    require('autoprefixer')({})
-  ]
+    require('autoprefixer')({}),
+  ],
 }

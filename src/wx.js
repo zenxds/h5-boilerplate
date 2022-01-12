@@ -16,9 +16,9 @@ export const share = function (options) {
       title: document.title,
       desc: document.title,
       link: location.href,
-      imgUrl: ''
+      imgUrl: '',
     },
-    options || {}
+    options || {},
   )
 
   $.ajax({
@@ -31,6 +31,6 @@ export const share = function (options) {
         wx.onMenuShareTimeline(options)
         wx.onMenuShareAppMessage(options)
       })
-    }
+    },
   })
 }
