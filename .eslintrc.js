@@ -36,6 +36,6 @@ module.exports = {
     ],
     semi: ['error', 'never'],
     'eol-last': ['warn'],
-    'comma-dangle': ['error', 'never']
+    'comma-dangle': ['error', 'always-multiline']
   }
 }

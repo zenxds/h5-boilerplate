@@ -59,7 +59,9 @@ module.exports = {
       inject: 'body',
       hash: true,
     }),
-    new ESLintPlugin(),
+    new ESLintPlugin({
+      failOnError: true,
+    }),
     new webpack.DefinePlugin({}),
   ],
   devServer: {
